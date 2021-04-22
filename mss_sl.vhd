@@ -16,7 +16,7 @@ end mss_sl;
 --Architecture
 architecture solve of mss_sl is
 	-- Signals,Constants,Variables,Components
-	--s0,s1,s2,s3,s4,s5
+	--ta,tb,tc,td
 	--start
 	
 	type estado is (ta,tb,tc,td);
@@ -43,7 +43,7 @@ architecture solve of mss_sl is
 			end if;
 	end process;
 	--Process #2: State Indicator
-	process(y)-- mealy ->(y,d,n)
+	process(y)-- moore
 	--Sequential programming
 		begin
 			enbcd<='0';
@@ -53,7 +53,7 @@ architecture solve of mss_sl is
 			case y is
 				when ta => est<="00"; --start 0
 				when tb => est<="01"; --start 1
-				when tc => enbcd<='1';if cero='1' then endown<='0';else endown <='1'; end if; est<="10";
+				when tc => enbcd<='1';endown <='1'; est<="10";
 				when td => fin<='1'; est<="11"; 
 				
 				
